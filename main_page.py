@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
 import numpy as np
-from pages.auth import *
+#from pages.auth import *
 
 import requests
 import os
@@ -75,14 +75,14 @@ st.write(f'전날 종가: {np.round(data.iloc[-2]["Close"],0)}')
 st.write(f'최고가: {np.round(data["Close"].max(),0)}')
 st.write(f'최저가: {np.round(data["Close"].min(),0)}')
 
-if st.button('관심종목 등록'):
-    if ('authentication_status' in st.session_state) and ('name' in st.session_state):
-        if 'like' in config['credentials']['usernames'][st.session_state["name"]]:
-            config['credentials']['usernames'][st.session_state["name"]]['like'].append(ticker)
-        else:
-            config['credentials']['usernames'][st.session_state["name"]]['like'] = [ticker]
-    else:
-        st.write("관심종목 등록은 로그인이 필요합니다.")
+# if st.button('관심종목 등록'):
+#     if ('authentication_status' in st.session_state) and ('name' in st.session_state):
+#         if 'like' in config['credentials']['usernames'][st.session_state["name"]]:
+#             config['credentials']['usernames'][st.session_state["name"]]['like'].append(ticker)
+#         else:
+#             config['credentials']['usernames'][st.session_state["name"]]['like'] = [ticker]
+#     else:
+#         st.write("관심종목 등록은 로그인이 필요합니다.")
 
 # 과거 데이터 표시
 st.subheader('💁🏻 종목 히스토리')
