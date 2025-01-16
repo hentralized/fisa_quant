@@ -1,4 +1,4 @@
-pipaltair==5.5.0
+altair==5.5.0
 attrs==24.3.0
 beautifulsoup4==4.12.3
 blinker==1.9.0
@@ -22,7 +22,7 @@ MarkupSafe==3.0.2
 mdurl==0.1.2
 multitasking==0.0.11
 narwhals==1.22.0
-numpy==24.1.2
+numpy
 packaging==24.2
 pandas==2.2.3
 peewee==3.17.8
