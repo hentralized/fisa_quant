@@ -4,17 +4,50 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
-<<<<<<< HEAD:차민재/main_page.py
-
-# 대표 사이트 명
-st.title(' 🏦 우리 FISA 증권 🏦')
-=======
 import numpy as np
 from pages.auth import *
 
+import requests
+import os
+import sys
+# check if the library folder already exists, to avoid building everytime you load the pahe
+if not os.path.isdir("/tmp/ta-lib"):
+
+    # Download ta-lib to disk
+    with open("/tmp/ta-lib-0.4.0-src.tar.gz", "wb") as file:
+        response = requests.get(
+            "http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz"
+        )
+        file.write(response.content)
+    # get our current dir, to configure it back again. Just house keeping
+    default_cwd = os.getcwd()
+    os.chdir("/tmp")
+    # untar
+    os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
+    os.chdir("/tmp/ta-lib")
+    # build
+    os.system("./configure --prefix=/home/appuser")
+    os.system("make")
+    # install
+    os.system("make install")
+    # install python package
+    os.system(
+        'pip3 install --global-option=build_ext --global-option="-L/home/appuser/lib/" --global-option="-I/home/appuser/include/" ta-lib'
+    )
+    # back to the cwd
+    os.chdir(default_cwd)
+    print(os.getcwd())
+    sys.stdout.flush()
+
+# add the library to our current environment
+from ctypes import *
+
+lib = CDLL("/home/appuser/lib/libta_lib.so.0")
+# import library
+import talib
+
 # 대표 사이트 명
 st.title(' 🏦 우리 FISA TA 🏦')
->>>>>>> 2ad79c146f30941ba622bef0ffbb83794ee4f87e:main_page.py
 
 # Streamlit 제목 설정
 st.subheader('💵 실시간 주식 종목 분석')
@@ -37,12 +70,6 @@ data = fdr.DataReader(ticker, start='2024-01-01')
 
 # 실시간 주가 표시
 st.subheader('💁🏻 실시간 주가')
-<<<<<<< HEAD:차민재/main_page.py
-st.write(f'현재가: {data.iloc[-1]["Close"]}')
-st.write(f'전날 종가: {data.iloc[-2]["Close"]}')
-st.write(f'최고가: {data["Close"].max()}')
-st.write(f'최저가: {data["Close"].min()}')
-=======
 st.write(f'현재가: {np.round(data.iloc[-1]["Close"],0)}')
 st.write(f'전날 종가: {np.round(data.iloc[-2]["Close"],0)}')
 st.write(f'최고가: {np.round(data["Close"].max(),0)}')
@@ -56,7 +83,6 @@ if st.button('관심종목 등록'):
             config['credentials']['usernames'][st.session_state["name"]]['like'] = [ticker]
     else:
         st.write("관심종목 등록은 로그인이 필요합니다.")
->>>>>>> 2ad79c146f30941ba622bef0ffbb83794ee4f87e:main_page.py
 
 # 과거 데이터 표시
 st.subheader('💁🏻 종목 히스토리')
