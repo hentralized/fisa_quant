@@ -72,12 +72,7 @@ import datetime
 ### Image link
 ![우리FISA](https://github.com/user-attachments/assets/aa4f6b8b-aae1-4b9f-a37a-b98c471a7d46)
 
-## 💫 Troubleshooting
+## 💫 어려웠던 점 
 1. ta-lib 라이브러리 설치 중 dependency 충돌이 발생했어요. 
 2. API key를 사용하여 재무제표 이외으 기업의 정보를 가져오지 못해 아쉬워요 
-
-makeDeveloper('ONE:A', 'JavaScript');
-```
-
-<br>
 
