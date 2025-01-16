@@ -7,8 +7,8 @@ import streamlit as st
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-from get_financial_reports import fs_global, fs_domestic
-from utils import show_bar_chart, get_triangle
+from ..get_financial_reports import fs_global, fs_domestic
+from ..utils import show_bar_chart, get_triangle
 
 st.set_page_config(layout="wide")
 
