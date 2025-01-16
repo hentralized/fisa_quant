@@ -83,7 +83,11 @@ def fs_global(ticker):
 
     ab = pd.concat([abs, absq], axis=1)
 
+<<<<<<< HEAD:차민재/get_financial_reports.py
+    r = pd.concat([af, ab]).T.astype(int)
+=======
     r = pd.concat([af, ab]).T.astype('Int64')
+>>>>>>> 2ad79c146f30941ba622bef0ffbb83794ee4f87e:get_financial_reports.py
     r['ROA(%)'] = round(r['Net Income'] / r['Total Assets'] * 100, 1)
     r['ROE(%)'] = round(r['Net Income'] / r['자본총계'] * 100, 1)
     r['부채비율'] = round(r['Total Liabilities Net Minority Interest'] / r['자본총계'] * 100, 2)
