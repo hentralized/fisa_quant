@@ -83,7 +83,7 @@ def fs_global(ticker):
 
     ab = pd.concat([abs, absq], axis=1)
 
-    r = pd.concat([af, ab]).T.astype(int)
+    r = pd.concat([af, ab]).T.astype('Int64')
     r['ROA(%)'] = round(r['Net Income'] / r['Total Assets'] * 100, 1)
     r['ROE(%)'] = round(r['Net Income'] / r['자본총계'] * 100, 1)
     r['부채비율'] = round(r['Total Liabilities Net Minority Interest'] / r['자본총계'] * 100, 2)

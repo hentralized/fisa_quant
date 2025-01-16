@@ -72,7 +72,8 @@ if st.session_state['financial_data'] is not None:
         results = pd.DataFrame({
             "항목": filtered_df.index,
             f"최근 {st.session_state['view_option']}": latest_values.values,
-            f"{col_name}": np.round(changes.values, 2)
+            f"{col_name}": np.round(changes.values, 2) if changes.dtype == 'float64' else changes.values
+
         })
 
         # 변화량에 따라 색상 지정
