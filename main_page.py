@@ -4,6 +4,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
+from pages.auth import *
 
 # 대표 사이트 명
 st.title(' 🏦 우리 FISA 증권 🏦')
@@ -33,6 +34,15 @@ st.write(f'현재가: {data.iloc[-1]["Close"]}')
 st.write(f'전날 종가: {data.iloc[-2]["Close"]}')
 st.write(f'최고가: {data["Close"].max()}')
 st.write(f'최저가: {data["Close"].min()}')
+
+if st.button('관심종목 등록'):
+    if ('authentication_status' in st.session_state) and ('name' in st.session_state):
+        if 'like' in config['credentials']['usernames'][st.session_state["name"]]:
+            config['credentials']['usernames'][st.session_state["name"]]['like'].append(ticker)
+        else:
+            config['credentials']['usernames'][st.session_state["name"]]['like'] = [ticker]
+    else:
+        st.write("관심종목 등록은 로그인이 필요합니다.")
 
 # 과거 데이터 표시
 st.subheader('💁🏻 종목 히스토리')
