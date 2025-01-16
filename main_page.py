@@ -4,10 +4,11 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
+import numpy as np
 from pages.auth import *
 
 # 대표 사이트 명
-st.title(' 🏦 우리 FISA 증권 🏦')
+st.title(' 🏦 우리 FISA TA 🏦')
 
 # Streamlit 제목 설정
 st.subheader('💵 실시간 주식 종목 분석')
@@ -30,10 +31,10 @@ data = fdr.DataReader(ticker, start='2024-01-01')
 
 # 실시간 주가 표시
 st.subheader('💁🏻 실시간 주가')
-st.write(f'현재가: {data.iloc[-1]["Close"]}')
-st.write(f'전날 종가: {data.iloc[-2]["Close"]}')
-st.write(f'최고가: {data["Close"].max()}')
-st.write(f'최저가: {data["Close"].min()}')
+st.write(f'현재가: {np.round(data.iloc[-1]["Close"],0)}')
+st.write(f'전날 종가: {np.round(data.iloc[-2]["Close"],0)}')
+st.write(f'최고가: {np.round(data["Close"].max(),0)}')
+st.write(f'최저가: {np.round(data["Close"].min(),0)}')
 
 if st.button('관심종목 등록'):
     if ('authentication_status' in st.session_state) and ('name' in st.session_state):
