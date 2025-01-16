@@ -16,7 +16,7 @@ def get_triangle(df, name) : # 상승 하강 삼각형
         prevent_value = df.loc[name].iloc[-2]
         
     if recent_value >= prevent_value :
-        answer = '🔺'
+        answer = '🔼'
     else :
         answer = '🔽'
     return recent_value, answer 
