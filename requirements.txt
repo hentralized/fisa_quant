@@ -44,7 +44,8 @@ six==1.17.0
 smmap==5.0.2
 soupsieve==2.6
 streamlit==1.41.1
-TA-Lib @ file:///C:/ITStudy/stock_streamlit/TA_Lib-0.4.28-cp311-cp311-win_amd64.whl
+#TA-Lib @ ./TA_Lib-0.4.28-cp311-cp311-win_amd64.whl
+ta-lib
 tenacity==9.0.0
 toml==0.10.2
 tornado==6.4.2
